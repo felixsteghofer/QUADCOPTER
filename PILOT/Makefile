@@ -8,7 +8,8 @@ OBJ=$(SRC:.cpp=.o)
 
 #-----------------------------------------------------------
 #compilation :
-CC = g++
+#CC = g++
+CC = /home/felix/bin/raspi-toolchain/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-g++
 LIBS= -lm -lrt #-llapack
 
 #option de debugage :

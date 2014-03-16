@@ -76,7 +76,7 @@ void Servo::init()
   };
 
   setServo();
-  sleep(1);
+  usleep(1000);
 }
 
 void Servo::update(float throttle, float PIDoutput[DIM])
