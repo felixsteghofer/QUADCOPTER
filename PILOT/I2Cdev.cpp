@@ -59,6 +59,12 @@ THE SOFTWARE.
 I2Cdev::I2Cdev() {
 }
 
+/** I2C device may be different on different machines.
+ *  Change here for global access.
+ * @return I2C device used
+ */
+const char * i2cDevice("/dev/i2c-0");
+
 /** Read a single bit from an 8-bit device register.
  * @param devAddr I2C slave device address
  * @param regAddr Register regAddr to read from
@@ -172,7 +178,7 @@ int8_t I2Cdev::readWord(uint8_t devAddr, uint8_t regAddr, uint16_t *data, uint16
  */
 int8_t I2Cdev::readBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data, uint16_t timeout) {
     int8_t count = 0;
-    int fd = open("/dev/i2c-1", O_RDWR);
+    int fd = open(i2cDevice, O_RDWR);
 
     if (fd < 0) {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
@@ -344,7 +350,7 @@ bool I2Cdev::writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_
         return(FALSE);
     }
 
-    fd = open("/dev/i2c-1", O_RDWR);
+    fd = open(i2cDevice, O_RDWR);
     if (fd < 0) {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
         return(FALSE);
@@ -391,7 +397,7 @@ bool I2Cdev::writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16
         return(FALSE);
     }
 
-    fd = open("/dev/i2c-1", O_RDWR);
+    fd = open(i2cDevice, O_RDWR);
     if (fd < 0) {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
         return(FALSE);
