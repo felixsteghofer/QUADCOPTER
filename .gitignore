@@ -1,3 +1,4 @@
 *.o
 *~
 PILOT/quad_pilot
+REMOTE_APP_ANDROID/out/
