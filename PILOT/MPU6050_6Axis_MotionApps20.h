@@ -456,7 +456,7 @@ uint8_t MPU6050::dmpInitialize() {
             printf("Waiting for FIFO count > 2...\n");
             while ((fifoCount = getFIFOCount()) < 3);
 
-            printf("Current FIFO count=%d",fifoCount);
+            printf("Current FIFO count=%d\n",fifoCount);
             DEBUG_PRINTLN(fifoCount);
             DEBUG_PRINTLN(F("Reading FIFO data..."));
             getFIFOBytes(fifoBuffer, fifoCount);

@@ -1,12 +1,5 @@
 package aztux.quadcontrol;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,21 +9,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Spinner;
+
+import java.io.IOException;
+import java.net.*;
 
 
 
 public class PIDActivity extends Activity {
 	int curpid = 0;
 	boolean pidlistloaded = false;
-	public static String _kp="0",_ki="0",_kd="0", ip = "10.0.0.5";
+	public static String _kp="0",_ki="0",_kd="0", ip = "192.168.0.111";
 	EditText kp;
 	EditText ki;
 	EditText kd;
