@@ -22,7 +22,6 @@
 
 
 #include "servo.h"
-#include <unistd.h>
 
 Servo ESC;
 
@@ -34,7 +33,6 @@ Servo::Servo()
   m_servoId[3] = 3;
 
   fid_servo=NULL;
-  logFile=fopen("logFile.txt", "a");;
 }
 
 bool Servo::Is_open_blaster()
@@ -62,7 +60,6 @@ void Servo::close_blaster()
      printf("/dev/servoblaster not opened \n");
      return;
   }
-  fclose(logFile);
   fclose(fid_servo);
   fid_servo=NULL;
 }
@@ -78,7 +75,7 @@ void Servo::init()
   };
 
   setServo();
-  usleep(1000);
+  sleep(1);
 }
 
 void Servo::update(float throttle, float PIDoutput[DIM])
@@ -106,7 +103,6 @@ void Servo::setServo()
     for (int i=0;i<4;i++){
       fprintf(fid_servo, "%d=%dus\n",m_servoId[i], servoval[i]);
       fflush(fid_servo);
-      fprintf(logFile, "Servo: %d value: %d\n", m_servoId[i], servoval[i]);
     }
   } else {
     printf("Servoblaster not opened \n");

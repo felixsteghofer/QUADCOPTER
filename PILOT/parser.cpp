@@ -86,7 +86,7 @@ void Parser::parse(unsigned char data[256],float &t,float ypr[]){
 
 
 void Parser::parse(unsigned char data[],float &kp,float &ki,float &kd){
-  //returns thrust, yaw, pitch and roll values form char data
+  //returns thrust, yaw, pitch and roll walues form char data
 
   //Processing packet
   std::string packet( reinterpret_cast< char const* > (data));

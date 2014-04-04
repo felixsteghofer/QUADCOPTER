@@ -18,7 +18,6 @@ class Servo {
 private:
   int m_servoId[4];
   FILE* fid_servo;
-  FILE* logFile;
 
 public:
   Servo();
