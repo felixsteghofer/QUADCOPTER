@@ -19,23 +19,24 @@ import java.net.*;
 
 
 public class PIDActivity extends Activity {
-	int curpid = 0;
-	boolean pidlistloaded = false;
-	public static String _kp="0",_ki="0",_kd="0", ip = "192.168.0.111";
-	EditText kp;
-	EditText ki;
-	EditText kd;
-	EditText kp_min;
-	EditText ki_min;
-	EditText kd_min;
-	EditText kp_max;
-	EditText ki_max;
-	EditText kd_max;
-	EditText ipaddr;
-	SharedPreferences prefs;
-	SeekBar seekBar_kp;
-	SeekBar seekBar_ki;
-	SeekBar seekBar_kd;
+	private int curpid = 0;
+	private boolean pidlistloaded = false;
+	private static String _kp="0",_ki="0",_kd="0";
+    public static String ip = "192.168.0.111";
+	private EditText kp;
+	private EditText ki;
+	private EditText kd;
+	private EditText kp_min;
+	private EditText ki_min;
+	private EditText kd_min;
+	private EditText kp_max;
+	private EditText ki_max;
+	private EditText kd_max;
+	private EditText ipaddr;
+	private SharedPreferences prefs;
+	private SeekBar seekBar_kp;
+	private SeekBar seekBar_ki;
+	private SeekBar seekBar_kd;
 	
 	
 	void updateBoxes(int pid) {
