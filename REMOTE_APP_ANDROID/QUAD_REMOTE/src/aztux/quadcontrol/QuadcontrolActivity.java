@@ -1,14 +1,5 @@
 package aztux.quadcontrol;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,14 +7,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnTouchListener;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class QuadcontrolActivity extends Activity {
@@ -52,9 +45,13 @@ public class QuadcontrolActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ctx = this;
-        Display display = getWindowManager().getDefaultDisplay(); 
-		width = display.getWidth();
-		height = display.getHeight();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        width = size.x;
+        height = size.y;
         
 		thrCenterX = width/4;
 		thrCenterY = height/2;
@@ -80,8 +77,7 @@ public class QuadcontrolActivity extends Activity {
 						byte[] message = new byte[1500];
 						DatagramPacket p = new DatagramPacket(message, message.length);
 						sock.receive(p);
-						String text = new String(message, 0, p.getLength());
-						serverMsgs = text;
+						serverMsgs = new String(message, 0, p.getLength());
 						hand.post(new Runnable() {
 							@Override
 							public void run() {
@@ -110,28 +106,27 @@ public class QuadcontrolActivity extends Activity {
 		
         v = new View(this) {
         	protected void onDraw(Canvas g) {
-        		int w=width, h=height;
         
         		
         		Paint wpt = new Paint();
         		wpt.setColor(Color.WHITE);
         		wpt.setStyle(Style.FILL);
-        		g.drawRect(0, 0, w,h, wpt);
+        		g.drawRect(0, 0, width,height, wpt);
         		
         		Paint p = new Paint();
         		p.setColor(Color.BLACK);
         		p.setStrokeWidth(3);
         		
-        		int widthRange = w/2;
-        		int heightRange = h;
+        		int widthRange = width/2;
+        		int heightRange = height;
         		
-        		g.drawLine(thrCenterX, 0, thrCenterX, h, p);
-        		g.drawLine(0, thrCenterY, w/2, thrCenterY, p);
-        		g.drawCircle((int)(thrCenterX + (yaw/50.0)*(widthRange/2)), (int)(h - (throttle/100.0)*heightRange), 10, p);
+        		g.drawLine(thrCenterX, 0, thrCenterX, height, p);
+        		g.drawLine(0, thrCenterY, width/2, thrCenterY, p);
+        		g.drawCircle((int)(thrCenterX + (yaw/50.0)*(widthRange/2)), (int)(height - (throttle/100.0)*heightRange), 10, p);
         		
         		g.drawCircle((int)(pitCenterX  + (roll/50.0)*(widthRange/2)), (int)(pitCenterY - (pitch/50.0)*(heightRange/2)), 10, p);
-        		g.drawLine(pitCenterX, 0, pitCenterX, h, p);
-        		g.drawLine(w/2, pitCenterY, w, pitCenterY, p);
+        		g.drawLine(pitCenterX, 0, pitCenterX, height, p);
+        		g.drawLine(width/2, pitCenterY, width, pitCenterY, p);
 
         		Paint p2 = new Paint();
         		g.drawText("Thr "+throttle+" Yaw "+yaw + " Pitch "+pitch + " Roll" + roll, 10, 10, p2);
