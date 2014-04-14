@@ -154,7 +154,7 @@ void DMP::initialize(){
        // 	      ypr[ROLL]*180/M_PI);
     }
   }
-
+  
   printf("IMU init done; offset values are :\n");
   printf("yaw = %f, pitch = %f, roll = %f\n\n",
 	 ypr[YAW]*180/M_PI, ypr[PITCH]*180/M_PI,
@@ -196,7 +196,7 @@ void DMP::getAttitude()
     ypr[0] = wrap_180(ypr[0]);
 
     //change sign of Pitch, MPU is attached upside down
-    ypr[1]*=-1.0;
+    //ypr[1]*=-1.0;
 
     mpu.dmpGetGyro(g, fifoBuffer);
 
@@ -204,12 +204,12 @@ void DMP::getAttitude()
     //swapped to match Yaw,Pitch,Roll
     //Scaled from deg/s to get tr/s
      for (int i=0;i<DIM;i++){
-       gyro[i]   = (float)(g[DIM-i-1])/131.0/360.0;
+       //gyro[i]   = (float)(g[DIM-i-1])/131.0/360.0;
      }
-
-    // printf("gyro  %7.2f %7.2f %7.2f    \n", (float)g[0]/131.0,
-    // 	   (float)g[1]/131.0,
-    // 	   (float)g[2]/131.0);
-
+     /*
+     printf("gyro  %7.2f %7.2f %7.2f    \n", (float)g[0]/131.0,
+     	   (float)g[1]/131.0,
+     	   (float)g[2]/131.0);
+     */
   }
 }
