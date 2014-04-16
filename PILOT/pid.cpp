@@ -77,18 +77,18 @@ PID::PID(float kp_,float ki_,float kd_)
   m_outmin = -400;
 }
 
-float PID::update_pid_std(float setpoint, float input, float dt)
+float PID::update_pid_std(float setpoint, float current_position, float dt)
 {
 
   //Computes error
-  m_err = setpoint-input;
+  m_err = setpoint-current_position;
 
   //Integrating errors
   m_sum_err += m_err * m_Ki * dt;
 
   //calculating error derivative
   //Input derivative is used to avoid derivative kick
-  m_ddt_err = -m_Kd / dt * (input - m_lastInput);
+  m_ddt_err = -m_Kd / dt * (current_position - m_lastInput);
 
   //Calculation of the output
   //winds up boundaries
@@ -97,17 +97,17 @@ float PID::update_pid_std(float setpoint, float input, float dt)
     //winds up boundaries
     m_sum_err  = 0.0;
     m_output   = m_outmax;
-  }else if (m_output < m_outmin) {
+  } else if (m_output < m_outmin) {
     //winds up boundaries
     m_sum_err  = 0.0;
     m_output   = m_outmin;
   }
 
-  m_lastInput= input;
+  m_lastInput= current_position;
 
-  //printf("kp %f ki %f kd %f\n", m_Kp, m_Ki, m_Kd);
-  //printf("setpt %7.2f input   %7.2f output   %f\n", setpoint, input, m_output);
-  //printf("err   %7.2f ddt_err %7.2f sum_err  %7.2f\n", m_err, m_ddt_err, m_sum_err);
+  printf("kp %f ki %f kd %f\n", m_Kp, m_Ki, m_Kd);
+  printf("setpt %7.2f current_position   %7.2f output   %f\n", setpoint, input, m_output);
+  printf("err   %7.2f ddt_err %7.2f sum_err  %7.2f\n", m_err, m_ddt_err, m_sum_err);
 
   return m_output;
 }
