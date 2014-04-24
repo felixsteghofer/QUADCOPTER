@@ -128,13 +128,13 @@ void TimerClass::sig_handler_(int signum)
   			    Timer.dt);
   }
 
-  // printf("PITCH: %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[PITCH],
-  // 	 imu.ypr[PITCH],
-  // 	 Timer.PIDout[PITCH]);
+   printf("PITCH: %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[PITCH],
+   	 imu.ypr[PITCH],
+   	 Timer.PIDout[PITCH]);
 
-  // printf("ROLL: %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[ROLL],
-  // 	 imu.ypr[ROLL],
-  // 	 Timer.PIDout[ROLL]);
+   printf("ROLL: %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[ROLL],
+   	 imu.ypr[ROLL],
+   	 Timer.PIDout[ROLL]);
 
 
   for (int i=0;i<DIM;i++){
@@ -144,13 +144,13 @@ void TimerClass::sig_handler_(int signum)
 				Timer.dt);
   }
 
-  // printf("PITCH: %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[PITCH],
-  // 	 imu.gyro[PITCH],
-  // 	 Timer.PIDout[PITCH]);
+   printf("PITCH: %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[PITCH],
+   	 imu.gyro[PITCH],
+   	 Timer.PIDout[PITCH]);
 
-  // printf("ROLL:  %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[ROLL],
-  // 	 imu.gyro[ROLL],
-  // 	 Timer.PIDout[ROLL]);
+   printf("ROLL:  %7.2f %7.2f %7.2f\n",Timer.ypr_setpoint[ROLL],
+   	 imu.gyro[ROLL],
+   	 Timer.PIDout[ROLL]);
 
 
   #endif

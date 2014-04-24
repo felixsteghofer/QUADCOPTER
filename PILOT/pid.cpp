@@ -56,8 +56,8 @@ PID::PID()
   m_sum_err = 0;
   m_ddt_err = 0;
   m_lastInput= 0;
-  m_outmax =  200;
-  m_outmin = -200;
+  m_outmax =  400;
+  m_outmin = -400;
 }
 
 
@@ -105,9 +105,9 @@ float PID::update_pid_std(float setpoint, float current_position, float dt)
 
   m_lastInput= current_position;
 
-  printf("kp %f ki %f kd %f\n", m_Kp, m_Ki, m_Kd);
-  printf("setpt %7.2f current_position   %7.2f output   %f\n", setpoint, input, m_output);
-  printf("err   %7.2f ddt_err %7.2f sum_err  %7.2f\n", m_err, m_ddt_err, m_sum_err);
+  //printf("kp %f ki %f kd %f\n", m_Kp, m_Ki, m_Kd);
+  //printf("setpt %7.2f current_position   %7.2f output   %f\n", setpoint, input, m_output);
+  //printf("err   %7.2f ddt_err %7.2f sum_err  %7.2f\n", m_err, m_ddt_err, m_sum_err);
 
   return m_output;
 }
