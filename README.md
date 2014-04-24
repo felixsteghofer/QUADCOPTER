@@ -1,3 +1,7 @@
+This project is forked from https://github.com/vjaunet/QUADCOPTER
+
+All credit to vjaunet.
+
 QUADCOPTER
 ==========
 
@@ -31,11 +35,6 @@ its use
 - PILOT  : the complete controller currently under development
 - SERVOBLASTER : a cpp class used to write the ESC comands into /dev/servoblaster
 
-
-    This project is forked from https://github.com/vjaunet/QUADCOPTER
-
-    All credit to vjaunet.
-
 This project is greatly inspired and using source code from :
 - https://github.com/richardghirst/PiBits
 for ServoBlaster that I use to control the ESCs and the MPU6050 Digital motion processing.
@@ -47,9 +46,6 @@ for the Timing and the code structure
 for the Android app
 
 Many thanks to these people.
-
-    Successful fork on 23-03-2014
-    (Everything working: sensors, ESC, socket and App)
 
 First fully working version 22-01-2014
 
@@ -70,7 +66,7 @@ Hardware
 
 This projects includes :
 - 4 brushless motors (NTM Prop Drive 28-30S 800KV / 300W Brushless Motor (short shaft))
-- 4 Electronic Speed Controllers (Afro ESC 20Amp Multi-rotor Motor Speed Controller) (2 Reversed by Firmware)
+- 4 Electronic Speed Controllers (Afro ESC 20Amp Multi-rotor Motor Speed Controller)
 - 1 LiPo 3s 2200 mAh battery
 - 1 MPU6050 6DOF Sensor Modul 3 Axis Achse Gyroscope Accelerometer
 - 1 QuadCopter frame
@@ -95,11 +91,13 @@ ESCs:
 -Signal Servo 2 -> pin 24
 -Signal Servo 3 -> pin 25
 
-Note that the use of this code requires some modifications of the Servoblaster configuration.
+Note that the use of this code requires some modifications (see SERVOBLASTER) of the Servoblaster configuration
 
+Modifications
+------
+This repo contains some patches for my individual configuration. Mainly the sensors are mounted differently..
 
-
-
-
-
-
+![](media/1.jpg)
+![](media/2.jpg)
+![](media/3.jpg)
+![](media/4.jpg)
